@@ -36,3 +36,5 @@ app.get('/news', (req, res) => {
 });
 
 app.listen(3000);
+
+console.log()
