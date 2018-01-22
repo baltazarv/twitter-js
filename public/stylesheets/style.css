@@ -48,7 +48,12 @@ code {
   float: left;
   height: 48px;
   width: 48px;
+  margin: 3px 11px;
   content:url("http://lorempixel.com/48/48");
+}
+li.tweetbox {
+  list-style-type: none;
+
 }
 .content {
   margin-left: 60px;
