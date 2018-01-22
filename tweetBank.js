@@ -16,9 +16,6 @@ function find (properties) {
 
 module.exports = { add: add, list: list, find: find };
 
-
-
-
 const randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
@@ -40,4 +37,4 @@ for (let i = 0; i < 10; i++) {
 
 add('John', "I can't wait to go home");
 
-console.log(list());
+// console.log(list());

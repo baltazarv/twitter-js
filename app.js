@@ -1,5 +1,7 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
+const tweetBank = require('./tweetBank');
+const routes = require('./routes');
 const app = express();
 
 app.set('view engine', 'html');
@@ -15,26 +17,31 @@ var locals = {
   ]
 };
 
+app.use(express.static('public'));
+
 nunjucks.render('index.html', locals, function(err, output) {
   if (err) console.log(err);
-  console.log(output);
+  // console.log(output);
 });
 
-app.use((req, res, next) => {
-  console.log(req.method, req.url);
-  next();
-});
+app.use('/', routes);
 
-app.get('/', (req, res) => {
-  //res.send('hello');
-  //const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-  res.render('index', locals);
-});
+// app.use((req, res, next) => {
+//   console.log(req.method, req.url);
+//   next();
+// });
 
-app.get('/news', (req, res) => {
-  res.send('News');
-});
+// app.get('/', (req, res) => {
+//   //res.send('hello');
+//   res.render('index', locals);
+// });
+
+// app.get('/news', (req, res) => {
+//   res.send('News');
+// });
 
 app.listen(3000);
 
-console.log()
+// tweetBank.add('baltazar', 'chirp');
+// console.log(tweetBank.list());
+
