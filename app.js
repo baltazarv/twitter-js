@@ -1,5 +1,6 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
+const morgan = require('morgan');
 const tweetBank = require('./tweetBank');
 const routes = require('./routes');
 const app = express();
@@ -8,21 +9,20 @@ app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 nunjucks.configure('views', { noCache: true });
 
-var locals = {
-  title: 'An Example',
-  people: [
-      { name: 'Gandalf'},
-      { name: 'Frodo' },
-      { name: 'Hermione'}
-  ]
-};
+app.use(morgan('dev'));
 
-app.use(express.static('public'));
+// var locals = {
+//   title: 'An Example',
+//   people: [
+//       { name: 'Gandalf'},
+//       { name: 'Frodo' },
+//       { name: 'Hermione'}
+//   ]
+// };
 
-nunjucks.render('index.html', locals, function(err, output) {
-  if (err) console.log(err);
-  // console.log(output);
-});
+// nunjucks.render('index.html', locals, function(err, output) {
+//   if (err) console.log(err);
+// });
 
 app.use('/', routes);
 
@@ -40,7 +40,9 @@ app.use('/', routes);
 //   res.send('News');
 // });
 
-app.listen(3000);
+app.listen(3000, function(){
+  console.log('listening on port 3000')
+});
 
 // tweetBank.add('baltazar', 'chirp');
 // console.log(tweetBank.list());

@@ -12,11 +12,11 @@ function list () {
 }
 
 function find (properties) {
-  console.log('find', properties, _.cloneDeep(_.filter(data, properties)));
+  // console.log('find', properties, _.cloneDeep(_.filter(data, properties)));
   return _.cloneDeep(_.filter(data, properties));
 }
 
-module.exports = { add: add, list: list, find: find };
+module.exports = { add, list, find };
 
 const randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -39,4 +39,4 @@ for (let i = 0; i < 10; i++) {
 
 // add('John', "I can't wait to go home");
 
-console.log(list());
+// console.log(list());
