@@ -4,12 +4,21 @@ const morgan = require('morgan');
 const tweetBank = require('./tweetBank');
 const routes = require('./routes');
 const app = express();
+const bodyParser = require('body-parser');
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 nunjucks.configure('views', { noCache: true });
 
 app.use(morgan('dev'));
+
+// router.get('/css/style.css', function(req, res, next) {
+//   res.sendFile('/css/style.css', { root: __dirname + '/../public' });
+// });
+app.use(express.static(__dirname + '/public')); // req.path // fs.readFile // mime.lookup
+
+app.use(bodyParser.urlencoded( { extended: true })); // HTML form submits
+app.use(bodyParser.json()); // AJAX form submits
 
 // var locals = {
 //   title: 'An Example',

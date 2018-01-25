@@ -3,22 +3,33 @@
 {% block content %}
 
   <div class="page-header">
-    <h1>Welcome to Twitter.js!</h1>
+    <h1>{{title}}</h1>
   </div>
   <div class="row">
     <div class="col-md-2">
       <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
       <b>Fullstack Student</b><br>
       100 followers
+      {% if showForm %}
+      <form action="/tweets" method="POST">
+        <label for="name_field">Name</label>
+        <input name="name" type="text" id="name_field" value="{{username}}" />
+
+        <label for="text_field">Tweet</label>
+        <input name="text" type="text" id="text_field" style="width:350px" />
+
+        <input type="submit" value="Submit" />
+      </form>
+      {% endif %}
     </div>
     <div class="col-md-10">
 
       <!-- display tweets here -->
       {% for tweet in tweets %}
         <li class="tweetbox">
-          <a href="/users/{{tweet.id}}"><img>
-          <strong>{{tweet.name}}</strong><br />
-          {{tweet.content}}</a>
+          <img>
+          <p><a href="/users/{{tweet.name}}"><strong>{{tweet.name}}</strong></a></p>
+          <p><a href="/tweets/{{tweet.id}}">{{tweet.content}}</a></p>
         </li>
       {% endfor %}
 
