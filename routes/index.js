@@ -4,7 +4,7 @@ const router = express.Router();
 const tweetBank = require('../tweetBank');
 
 router.get('/', function (req, res, next) {
-  let allTweets = tweetBank.list();
+  var allTweets = tweetBank.list();
   res.render( 'index', { title: 'Welcome to Twitter.js', tweets: allTweets, showForm: true } );
 });
 

@@ -5,6 +5,7 @@ const tweetBank = require('./tweetBank');
 const routes = require('./routes');
 const app = express();
 const bodyParser = require('body-parser');
+const port = process.env.PORT || 3000;
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
@@ -49,8 +50,8 @@ app.use('/', routes);
 //   res.send('News');
 // });
 
-app.listen(3000, function(){
-  console.log('listening on port 3000')
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });
 
 // tweetBank.add('baltazar', 'chirp');
